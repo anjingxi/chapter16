@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Vector;
 
 /**
  * @author 刘样
@@ -13,9 +14,13 @@ import java.awt.event.KeyListener;
 public class MyPanel extends JPanel implements KeyListener {
     //定义自己的坦克
     MyTank tank = null;
-
+    EnemyTank enemyTank =null;
+    Vector<EnemyTank> entanks=new Vector<>();
     public MyPanel() {
         tank = new MyTank(100, 100);
+        for (int i = 0; i < 3; i++) {
+            entanks.add(new EnemyTank(100*(i+1),getY()));
+        }
     }
     //重写方法
 
@@ -26,6 +31,11 @@ public class MyPanel extends JPanel implements KeyListener {
         g.fillRect(0, 0, 1000, 750);
         //画出坦克封装方法
         drawTank(tank.getX(), tank.getY(), g, tank.getDirect(), 1);
+        for (int i = 0; i < entanks.size(); i++) {
+            EnemyTank enemyTank1 = entanks.get(i);
+            enemyTank1.setDirect(2);
+            drawTank(enemyTank1.getX(),enemyTank1.getY(),g,enemyTank1.getDirect(),0);
+        }
     }
 
 

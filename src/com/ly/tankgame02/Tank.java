@@ -8,7 +8,7 @@ public class Tank {
     private int x;
     private int y;
     private int spead=1;
-    private int direct=0;
+    private int direct;
 
 
 
